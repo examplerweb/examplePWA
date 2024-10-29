@@ -434,3 +434,49 @@ function updateParticles() {
     // Puedes agregar lógica aquí si necesitas actualizar partículas.
     // Actualmente está vacía.
 }
+
+//PWA
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Previene que el mini-infobar aparezca en la parte inferior de la pantalla
+    e.preventDefault();
+    // Guarda el evento para que se pueda usar más tarde
+    deferredPrompt = e;
+
+    // Muestra tu popup aquí
+    showInstallPrompt(); // Puedes crear esta función para mostrar tu mensaje
+});
+
+function showInstallPrompt() {
+    // Crea un elemento de popup o usa un modal existente para mostrar el mensaje
+    const installPopup = document.createElement('div');
+    installPopup.innerHTML = `
+        <div style="background: rgba(0, 0, 0, 0.8); color: #fff; padding: 20px; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); border-radius: 10px; z-index: 1000;">
+            <p>¡Instala nuestra aplicación para una mejor experiencia!</p>
+            <button id="installBtn">Instalar</button>
+            <button id="closeBtn">Cerrar</button>
+        </div>
+    `;
+    document.body.appendChild(installPopup);
+
+    document.getElementById('installBtn').addEventListener('click', () => {
+        // Muestra el prompt de instalación
+        installPopup.remove(); // Elimina el popup
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('El usuario aceptó instalar la PWA.');
+            } else {
+                console.log('El usuario rechazó la instalación de la PWA.');
+            }
+            deferredPrompt = null; // Limpia el evento
+        });
+    });
+
+    document.getElementById('closeBtn').addEventListener('click', () => {
+        installPopup.remove(); // Cierra el popup
+    });
+}
+
