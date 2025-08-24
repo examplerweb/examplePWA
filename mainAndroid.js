@@ -177,9 +177,9 @@ function initializeGame() {
 }
 
 function createTouchControls() {
-    const leftButton = this.add.rectangle(100, 500, 100, 50, 0x00ff00).setInteractive();
-    const rightButton = this.add.rectangle(700, 500, 100, 50, 0x00ff00).setInteractive();
-    const fireButton = this.add.rectangle(400, 500, 100, 50, 0xff0000).setInteractive();
+    const leftButton = this.add.rectangle(100, 500, 80, 28, 0x00ff00).setInteractive();
+    const rightButton = this.add.rectangle(700, 500, 80, 28, 0x00ff00).setInteractive();
+    const fireButton = this.add.rectangle(400, 500, 80, 28, 0xff0000).setInteractive();
 
     leftButton.on('pointerdown', () => {
         player.setVelocityX(-300);
@@ -479,5 +479,6 @@ function showInstallPrompt() {
         installPopup.remove(); // Cierra el popup
     });
 }
+
 
 
