@@ -57,7 +57,7 @@ function create() {
 
     this.laserSound = this.sound.add('laserSound');
 
-    const introText = this.add.text(400, 200, 'Ingresa tu nombre:', { fontSize: '24px', fill: '#fff' });
+    const introText = this.add.text(400, 200, 'Ingresa tu Player Name:', { fontSize: '24px', fill: '#fff' });
     introText.setOrigin(0.5);
 
     const input = document.createElement('input');
@@ -479,4 +479,5 @@ function showInstallPrompt() {
         installPopup.remove(); // Cierra el popup
     });
 }
+
 
